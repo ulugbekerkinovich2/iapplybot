@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.dispatcher import FSMContext
 from states.userState import Form
-from data.config import GROUP_CHAT_ID
+from data.config import GROUP_CHAT_ID, THREAD_ID
 from loader import dp, bot
 from middlewares.throttling import RateLimitMiddleware
 dp.middleware.setup(RateLimitMiddleware())
@@ -44,7 +44,8 @@ async def process_description(message: types.Message, state: FSMContext):
         f"📋 New Form Submission:\n\n"
         f"👤 Full Name: {data['fullname']}\n"
         f"📞 Phone Number: {data['phone']}\n"
-        f"📝 Description: {data['description']}"
+        f"📝 Description: {data['description']}",
+        message_thread_id=THREAD_ID
     )
 
     # Finish conversation with the user
