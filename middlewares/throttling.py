@@ -39,7 +39,7 @@ class ThrottlingMiddleware(BaseMiddleware):
 
 
 class RateLimitMiddleware(BaseMiddleware):
-    def __init__(self, limit: int = 3, filepath: str = 'user_requests.json'):
+    def __init__(self, limit: int = 15, filepath: str = 'user_requests.json'):
         self.limit = limit
         self.filepath = filepath
         super(RateLimitMiddleware, self).__init__()
