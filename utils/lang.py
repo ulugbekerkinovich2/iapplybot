@@ -1,6 +1,6 @@
 translations = {
     "uz": {
-        "choose_language": "🇺🇿 Tilni tanlang:",
+        "choose_language": "🇺🇿 Tilni tanlang\n🇺🇸Select language",
         "welcome": "👋 Xush kelibsiz! Iltimos, to‘liq ismingizni kiriting:",
         "send_phone": "📞 Telefon raqamingizni yuboring:",
         "description_prompt": "📝 Iltimos, qisqacha izoh yozing:",
