@@ -79,7 +79,7 @@ async def send_welcome(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     is_subscribed = await check_subscription(user_id)
     print(is_subscribed)
-    if not is_subscribed:
+    if is_subscribed:
         full_text = "Assalomu Alaykum! iApply botiga xush kelibsiz 👋🏻\nDavom etish uchun tilni tanlang ⤵️"
         await message.answer(
             text=full_text,
@@ -626,22 +626,35 @@ async def set_language(callback: types.CallbackQuery, state: FSMContext):
 # # ✅ Obunani tekshirish tugmasi
 @dp.callback_query_handler(lambda c: c.data == "check_subscription", state='*')
 async def check_subscriptions(callback: types.CallbackQuery, state: FSMContext):
+    from keyboards.inline.user_inlineKeyboards import check_subscription_keyboard
     user_id = callback.from_user.id
     data = await state.get_data()
     lang = data.get("lang", "uz")
 
-    if not await check_subscription(user_id):
+    # 🔎 A'zolikni tekshiramiz
+    is_subscribed = await check_subscription(user_id)
 
-        await callback.answer(t("err_subscription", lang), show_alert=True)
+    if not is_subscribed:
+        # ❌ Aʼzo bo‘lmagan foydalanuvchiga xabar yuboramiz
+        await callback.message.answer(
+            t("err_subscription", lang),  # Masalan: "📢 Avval kanallarga a’zo bo‘ling!"
+            reply_markup=check_subscription_keyboard(lang)  # ➕ Aʼzo bo‘lish tugmalari
+        )
         return
 
-    await callback.message.delete()
+    # ✅ Aʼzo bo‘lgan — davom etamiz
+    try:
+        await callback.message.delete()
+    except Exception as e:
+        print(f"⚠️ delete() xatolik: {e}")
 
-    # register_btn = InlineKeyboardMarkup().add(
-    #     InlineKeyboardButton(t("register_button", lang), callback_data="start_register")
-    # )
     await Form.webinar.set()
-    await callback.message.answer(t("success_subscription", lang), reply_markup=language)
+    await callback.message.answer(
+        t("success_subscription", lang),  # Masalan: "✅ A’zo bo‘lganingiz tasdiqlandi!"
+        reply_markup=language
+    )
+
+
     # await handler_webinar(callback.message, state)
 
 # @dp.callback_query_handler(lambda c: c.data.startswith("register:"), state=Form.webinar)

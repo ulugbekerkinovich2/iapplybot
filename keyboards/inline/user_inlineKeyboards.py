@@ -163,3 +163,17 @@ sub_buttons.add(
     InlineKeyboardButton("🇬🇧 iApply (EN)", url="https://t.me/iapplyorg"),
 )
 
+
+
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+def check_subscription_keyboard(lang: str) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton("🇺🇿 iApply (Uzb)", url="https://t.me/iapplyorguz"),
+            InlineKeyboardButton("🇬🇧 iApply (Eng)", url="https://t.me/iapplyorg")
+        ],
+        [
+            InlineKeyboardButton("✅ Aʼzolikni tekshirish", callback_data="check_subscription")
+        ]
+    ])
