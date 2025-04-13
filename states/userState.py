@@ -10,6 +10,7 @@ class Form(StatesGroup):
     register_webinar = State()
     collect_opinion = State()
     support_webinar = State()
+    ask_degree = State()
 
 
 class WebinarRegistration(StatesGroup):
@@ -20,5 +21,8 @@ class WebinarRegistration(StatesGroup):
 
     
 class HelpForm(StatesGroup):
-    waiting_for_help_text = State()
-    
+    application_type = State()
+    fullname = State()
+    phone = State()
+    application = State()
+

@@ -17,8 +17,11 @@ async def on_startup(dispatcher):
 
     # 🔁 Reminder scheduler start
     scheduler.add_job(send_webinar_reminders, 'interval', minutes=1, args=[bot])
+
+
+
     scheduler.start()
-    print("✅ Reminder scheduler started.")
+    # print("✅ Reminder scheduler started.")
 
 if __name__ == '__main__':
     executor.start_polling(dp, on_startup=on_startup)

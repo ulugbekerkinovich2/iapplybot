@@ -1,37 +1,21 @@
-[
-  {
-    "id": 5204054835,
-    "fullname": null,
-    "phone": null,
-    "description": null,
-    "lang": "uz"
-  },
-  {
-    "id": 935920479,
-    "fullname": null,
-    "phone": null,
-    "description": null,
-    "lang": "en"
-  },
-  {
-    "id": 5249237882,
-    "fullname": null,
-    "phone": null,
-    "description": null,
-    "lang": "en"
-  },
-  {
-    "id": 935920479,
-    "fullname": null,
-    "phone": null,
-    "description": null,
-    "lang": "uz"
-  },
-  {
-    "id": 935920479,
-    "fullname": null,
-    "phone": null,
-    "description": null,
-    "lang": "uz"
+{
+  "turkey": {
+    "datetime": "2025-04-13T21:28:00+05:00",
+    "users": [
+      {
+        "id": 935920479,
+        "fullname": "salim1",
+        "phone": "+998998359015",
+        "degree": "master",
+        "lang": "uzbek",
+        "country": "turkey",
+        "webinar_time": "2025-04-13T21:28:00+05:00",
+        "user_rate": 1,
+        "user_feedback": "1221",
+        "sent": [
+          2
+        ]
+      }
+    ]
   }
-]
+}

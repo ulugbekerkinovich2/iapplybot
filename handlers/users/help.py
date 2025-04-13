@@ -34,38 +34,38 @@ async def help_command(message: types.Message, state: FSMContext):
     await HelpForm.waiting_for_help_text.set()
 
 
-@dp.message_handler(state=HelpForm.waiting_for_help_text)
-async def receive_help_text(message: types.Message, state: FSMContext):
-    data = await state.get_data()
-    lang = get_lang(data, message)
+# @dp.message_handler(state=HelpForm.waiting_for_help_text)
+# async def receive_help_text(message: types.Message, state: FSMContext):
+#     data = await state.get_data()
+#     lang = get_lang(data, message)
 
-    user = message.from_user
-    text = message.text.strip().lower()
+#     user = message.from_user
+#     text = message.text.strip().lower()
 
-    # Buyruqlarni bloklash
-    if text in ["/start", "/help", "start", "help"]:
-        return
+#     # Buyruqlarni bloklash
+#     if text in ["/start", "/help", "start", "help"]:
+#         return
 
-    log_text = (
-        f"🆘 <b>{t('help_request', lang)}</b>\n"
-        f"👤 <b>{t('user', lang)}:</b> {user.full_name} (@{user.username or 'yo‘q'})\n"
-        f"🆔 <b>ID:</b> {user.id}\n"
-        f"✉️ <b>{t('message', lang)}:</b> {message.text}"
-    )
+#     log_text = (
+#         f"🆘 <b>{t('help_request', lang)}</b>\n"
+#         f"👤 <b>{t('user', lang)}:</b> {user.full_name} (@{user.username or 'yo‘q'})\n"
+#         f"🆔 <b>ID:</b> {user.id}\n"
+#         f"✉️ <b>{t('message', lang)}:</b> {message.text}"
+#     )
 
-    try:
-        await bot.send_message(
-            chat_id=GROUP_CHAT_ID,
-            text=log_text,
-            message_thread_id=WEBINAR_THREAD_ID,
-            parse_mode="HTML"
-        )
-    except Exception:
-        await bot.send_message(
-            chat_id=GROUP_CHAT_ID,
-            text=log_text,
-            parse_mode="HTML"
-        )
+#     try:
+#         await bot.send_message(
+#             chat_id=GROUP_CHAT_ID,
+#             text=log_text,
+#             message_thread_id=WEBINAR_THREAD_ID,
+#             parse_mode="HTML"
+#         )
+#     except Exception:
+#         await bot.send_message(
+#             chat_id=GROUP_CHAT_ID,
+#             text=log_text,
+#             parse_mode="HTML"
+#         )
 
-    await message.answer(t("help_sent", lang))
-    await state.finish()
+#     await message.answer(t("help_sent", lang))
+#     await state.finish()
