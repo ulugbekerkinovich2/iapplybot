@@ -433,7 +433,7 @@ async def process_support_webinar(message: types.Message, state: FSMContext):
 
 
 
-@dp.callback_query_handler(lambda c: c.data == 'help')
+@dp.callback_query_handler(lambda c: c.data == 'help', state='*')
 async def handler_help(callback: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = data.get('lang', 'uz')
