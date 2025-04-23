@@ -703,7 +703,7 @@ async def handler_help(callback: types.CallbackQuery, state: FSMContext):
     file_id_data = load_file_id()
     if file_id := file_id_data.get("image_help"):
         await callback.message.answer_photo(
-            photo="images/image_help.jpg",
+            photo="images/image_help.png",
             caption=caption,
             reply_markup=get_feedback_buttons(lang_)
         )
