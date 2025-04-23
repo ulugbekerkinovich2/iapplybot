@@ -469,7 +469,7 @@ async def degree_handler(callback: types.CallbackQuery, state: FSMContext):
         username_ = None
     # ✅ Admin kanalga habar
     await bot.send_message(
-        TEST_GROUP_CHAT_ID,
+        GROUP_CHAT_ID,
         f"Country: {country_names.get(country_)} {country_map.get(country_)}\n"
         f"Mentor: {users_by_country.get(country_)}\n"
         f"Webinar date: {time_by_country.get(country_).split(',')[0]}\n"
@@ -478,7 +478,7 @@ async def degree_handler(callback: types.CallbackQuery, state: FSMContext):
         f"Phone number: {data.get('phone')}\n"
         f"Degree: {degree_level.capitalize()}\n"
         f"Telegram username: {username_}\n",
-        message_thread_id=TEST_WEBINAR_REGISTER_ID
+        message_thread_id=WEBINAR_REGISTER_ID
     )
 
     # ✅ Vebinar vaqti va mamlakatni olish
@@ -615,7 +615,7 @@ async def process_support_webinar(message: types.Message, state: FSMContext):
         f"Rating: ⭐️{rate}\n"
         f"Feedback: {feedback_text}"
     )
-    await bot.send_message(TEST_GROUP_CHAT_ID, text_, message_thread_id=TEST_WEBINAR_THREAD_FEEDBACK)
+    await bot.send_message(GROUP_CHAT_ID, text_, message_thread_id=WEBINAR_THREAD_FEEDBACK)
 
     # 🔄 JSON faylga feedback saqlash
     update_user_feedback_in_webinar_file(user_id, feedback_text)
@@ -850,9 +850,9 @@ async def finish_(message: types.Message, state: FSMContext):
 
 
     await bot.send_message(
-        chat_id=TEST_GROUP_CHAT_ID,
+        chat_id=GROUP_CHAT_ID,
         text=msg_text,
-        message_thread_id=TEST_WEBINAR_THREAD_ID_HELP,
+        message_thread_id=WEBINAR_THREAD_ID_HELP,
         parse_mode=None  # ✅ Markdown emas, oddiy text
     )
 
