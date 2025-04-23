@@ -12,7 +12,7 @@ import asyncio
 # tz = pytz.timezone("Asia/Tashkent")
 # WEBINAR_TIME = tz.localize(datetime(2025, 4, 12, 10, 35))
 tz = pytz.timezone("Asia/Tashkent")
-WEBINAR_TIME = tz.localize(datetime(2025, 4, 13, 18, 55))  # ✅ timezone-aware
+# WEBINAR_TIME = tz.localize(datetime(2025, 4, 13, 18, 55))  # ✅ timezone-aware
 now = datetime.now(tz)
 # WEBINAR_TIME = datetime(2025, 4, 9, 20, 00)
 WEBINAR_JSON = "data/webinar_users.json"
@@ -186,14 +186,14 @@ async def send_webinar_reminders(bot: Bot):
             if "sent" not in user:
                 user["sent"] = []
             sent = user["sent"]
-
+            
             for m in REMINDER_MINUTES:
                 print(f"🔍 Tekshirilmoqda: {m} daqiqa eslatmasi")
-
+                print(minutes_left, m)
                 if m - 1 <= minutes_left <= m + 1 and m not in sent:
                     try:
                         print(f"📤 YUBORISH → {country.upper()} | User ID: {user_id} | {m} daqiqa qoldi")
-                        text = REMINDER_MESSAGES[lang].get(f"{m}m", f"📌 {m} daqiqa qoldi!")
+                        text = REMINDER_MESSAGES[lang].get(f"{m}m", f"📌 {m} daqiqa qoldi!\nHavola: https://t.me/iapplyorg")
                         await bot.send_message(user_id, text)
 
                         if m == 5:

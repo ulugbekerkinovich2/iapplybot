@@ -1,11 +1,13 @@
 translations = {
     "uz": {
+        "mentor_post_1": "Sizni mentorimiz",
+        "mentor_post_2": "bilan konsultatsiyaga yozilishni tavsiya qlamiz! 👉",
         "attemtion": "🚫 <b>Diqqat!</b> Botdan foydalanish uchun quyidagi kanallarga obuna bo‘ling:\n\n",
         "introduce": "Assalomu Alaykum! iApply botiga xush kelibsiz 👋🏻\nDavom etish uchun tilni tanlang ⤵️",
         'favourite_country': "🌍 Sizni qiziqtirgan davlatni tanlang va unga oid vebinarda qatnashing.",
         "reminder": "📅 Eslatma: Webinar 12 soatdan so'ng bo‘lib o‘tadi. Ishtirok etishga tayyorlaning!",
         "application_type": "Sizni arizangiz qanaqa ko'rinishda",
-        "success_subscription": "✅ Obuna muvaffaqiyatli tasdiqlandi.",
+        "success_subscription": "Assalomu Alaykum! iApply botiga xush kelibsiz 👋🏻\nDavom etish uchun tilni tanlang ⤵️",
         "err_subscription": "❌ Obuna aniqlanmadi. Iltimos, har ikkala kanallarga obuna bo‘ling.",
         "subscribe": "📢 Webinar’da ishtirok etishdan oldin quyidagi rasmiy kanallarga obuna bo‘ling:",
         "choose_language": "🇺🇿 Tilni tanlang\n🇺🇸Select language",
@@ -259,12 +261,14 @@ Tap a country in which you are interested in studying below for tailored webinar
 
 
     "en": {
+        "mentor_post_1": "Sizni mentorimiz",
+        "mentor_post_2": "bilan konsultatsiyaga yozilishni tavsiya qlamiz! 👉",
         "attemtion": "🚫 <b>Attention!</b> To use the bot, subscribe to the following channels:\n\n",
         "introduce": "Hello! Welcome to iApply bot 👋🏻\nSelect a language to continue ⤵️",
         'favourite_country': "🌍 Choose a country that interests you and attend a webinar about it.",
         "reminder": "📅 Note: The webinar will take place in 12 hours. Get ready to participate!",
         "application_type": "What does your application look like?",
-        "success_subscription": "✅ Obuna muvaffaqiyatli tasdiqlandi.",
+        "success_subscription": "Assalamu alaikum! Welcome to iApply bot 👋🏻\nSelect language to continue ⤵️",
         "err_subscription": "❌ Subscription not found. Please subscribe to both channels.",
         "subscribe": "📢 Please subscribe to the official channels before joining the webinar:",
         "congrats_1_webinar": "Thank you for selecting the",

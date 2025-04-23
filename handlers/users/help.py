@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from loader import dp, bot
 from utils.lang import t
-from data.config import WEBINAR_THREAD_ID, GROUP_CHAT_ID
+from data.config import GROUP_CHAT_ID
 from states.userState import HelpForm
 
 
@@ -21,17 +21,17 @@ def get_lang(data: dict, message: types.Message) -> str:
     return lang
 
 
-@dp.message_handler(commands=["help"], state="*")
-async def help_command(message: types.Message, state: FSMContext):
-    print('help ishga tushdi')
-    data = await state.get_data()
-    lang = get_lang(data, message)
+# @dp.message_handler(commands=["help"], state="*")
+# async def help_command(message: types.Message, state: FSMContext):
+#     print('help ishga tushdi')
+#     data = await state.get_data()
+#     lang = get_lang(data, message)
 
-    await message.answer(
-        f"{t('help', lang)}\n\n{t('ask_your_question', lang)}",
-        parse_mode="HTML"
-    )
-    await HelpForm.waiting_for_help_text.set()
+#     await message.answer(
+#         f"{t('help', lang)}\n\n{t('ask_your_question', lang)}",
+#         parse_mode="HTML"
+#     )
+#     await HelpForm.waiting_for_help_text.set()
 
 
 # @dp.message_handler(state=HelpForm.waiting_for_help_text)
