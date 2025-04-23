@@ -137,7 +137,7 @@ def save_user_to_webinar(user_data: dict):
 #     if updated:
 #         with open(WEBINAR_JSON, "w", encoding="utf-8") as f:
 #             json.dump(users, f, indent=2, ensure_ascii=False)
-REMINDER_MINUTES = [2, 5, 180, 720]
+REMINDER_MINUTES = [5, 180, 720]
 
 async def send_webinar_reminders(bot: Bot):
     print("🔄 Reminder function started...")

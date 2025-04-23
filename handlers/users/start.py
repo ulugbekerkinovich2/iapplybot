@@ -256,13 +256,13 @@ import pytz
 tz = pytz.timezone("Asia/Tashkent")
 
 webinar_times = {
-    "turkey": tz.localize(datetime(2025, 4, 23, 23, 16)),
-    "usa": tz.localize(datetime(2025, 4, 21, 18, 18)),
-    "italy": tz.localize(datetime(2025, 4, 23, 13, 16)),
-    "germany": tz.localize(datetime(2025, 4, 21, 18, 18)),
-    "korea": tz.localize(datetime(2025, 4, 21, 18, 18)),
-    "nordic": tz.localize(datetime(2025, 4, 23, 13, 31)),  
-    "hungary": tz.localize(datetime(2025, 4, 21, 18, 18)),
+    "turkey": tz.localize(datetime(2025, 4, 23, 17, 20)),
+    "usa": tz.localize(datetime(2025, 4, 23, 17, 40)),
+    "italy": tz.localize(datetime(2025, 4, 23, 18, 10)),
+    "germany": tz.localize(datetime(2025, 4, 23, 18, 40)),
+    "korea": tz.localize(datetime(2025, 4, 23, 19, 10)),
+    "nordic": tz.localize(datetime(2025, 4, 23, 19, 30)),  
+    "hungary": tz.localize(datetime(2025, 4, 23, 19, 50)),
 }
 
 
