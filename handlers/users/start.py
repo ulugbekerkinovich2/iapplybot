@@ -75,7 +75,7 @@ async def applcation_(message: types.Message, state: FSMContext):
     file_id_data = load_file_id()
     if file_id := file_id_data.get("image_help"):
         await message.answer_photo(
-            photo=file_id,
+            photo="images/image_help.png",
             caption=caption,
             reply_markup=get_feedback_buttons(lang)
         )
