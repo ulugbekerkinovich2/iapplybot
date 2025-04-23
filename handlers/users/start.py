@@ -552,7 +552,7 @@ from pathlib import Path
 
 WEBINAR_JSON = Path("data/webinar_users.json")
 
-def load_user_from_webinar_file(user_id: int) -> dict | None:
+def load_user_from_webinar_file(user_id: int):
     if not WEBINAR_JSON.exists():
         return None
 
