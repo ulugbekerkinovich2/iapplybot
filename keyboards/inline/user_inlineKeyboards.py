@@ -135,7 +135,7 @@ def get_select_degree_inline(lang: str) -> InlineKeyboardMarkup:
             InlineKeyboardButton("🎓 Master's", callback_data='master'),
             InlineKeyboardButton("❌ Cancel", callback_data='cancel')
         )
-    else:
+    if lang == 'uz' or lang == 'uzbek':
         return InlineKeyboardMarkup(row_width=2).add(
             InlineKeyboardButton("🎓 Bakalavr", callback_data='bachelor'),
             InlineKeyboardButton("🎓 Magistr", callback_data='master'),

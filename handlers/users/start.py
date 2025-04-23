@@ -27,6 +27,8 @@ from utils.webinar_utils import send_live_countdown
 from states.userState import HelpForm
 from utils.webinar_exporter import send_webinar_excel
 from keyboards.inline.user_inlineKeyboards import get_language_keyboard
+# ⚠️ Bu faylning yuqorisida joylashtiriladi (start.py yoki handlers/users/... bo'lsa)
+user_cache = {}
 
 async def check_subscription(user_id: int) -> bool:
     try:
@@ -42,8 +44,11 @@ async def check_subscription(user_id: int) -> bool:
 @dp.message_handler(commands=['changelanguage'], state="*")
 async def change_language_command(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    lang = data.get("lang", None)
-    print(lang)
+    # lang = data.get("lang", None)
+    lang = user_cache.get(message.from_user.id, {}).get("lang", None)
+    print(lang, 48)
+    if lang is None:
+        lang = data.get("lang", None)
     msg = "Tilni tanlang:" if lang == "uz" or lang=='uzbek' else "Please choose a language:"
     await message.answer(msg, reply_markup=get_language_keyboard())
 
@@ -223,8 +228,11 @@ def check_user_exists(user_id, country__):
 async def start_register(callback: types.CallbackQuery, state: FSMContext):
     photo = InputFile("images/image2_1.jpg")
     data_ = await state.get_data()
-    lang = data_.get('lang', 'uz')
-    print(lang)
+    lang = data_.get('lang', None)
+    # lang = user_cache.get(callback.from_user.id, {}).get("lang", None)
+    print(lang, 231)
+    # if lang is None:
+        # lang = data_.get('lang', None)
     if lang == "english" or lang == 'en':
         caption_text = t('webinar_main', 'en')
         # caption_text = "📢 Welcome to the iApply Webinar!\nFind opportunities to study abroad! 🌍"
@@ -364,7 +372,7 @@ PHONE_REGEX = re.compile(r"^\+998\d{9}$")  # +998 bilan boshlanuvchi format
 async def phone_handler(message: Message, state: FSMContext):
     phone_ = None
     data = await state.get_data()
-    lang = data.get("lang", "uz")
+    lang = data.get("lang", None)
 
     if message.contact:
         phone_ = message.contact.phone_number
@@ -374,7 +382,12 @@ async def phone_handler(message: Message, state: FSMContext):
     if phone_:
         await state.update_data(phone=phone_)
 
-        # Matnlar lang bo‘yicha
+        # ✅ Cache ga saqlaymiz
+        user_cache[message.from_user.id] = {
+            "lang": lang,
+        }
+        print(user_cache)
+
         if lang == "en" or lang == 'english':
             accepted_msg = "✅ Your phone number has been accepted."
             degree_question = "🎓 Are you applying for a Bachelor's or Master's degree?"
@@ -385,6 +398,7 @@ async def phone_handler(message: Message, state: FSMContext):
         await message.answer(accepted_msg, reply_markup=ReplyKeyboardRemove())
         await Form.ask_degree.set()
         await message.answer(degree_question, reply_markup=get_select_degree_inline(lang))
+        await state.update_data(lang=lang)
 
     else:
         if lang == "en":
@@ -401,16 +415,22 @@ async def phone_handler(message: Message, state: FSMContext):
 
 
 
+
 @dp.callback_query_handler(lambda c: c.data in ['master', 'bachelor'], state="*")
 async def degree_handler(callback: types.CallbackQuery, state: FSMContext):
     degree_level = callback.data
     await state.update_data(degree=degree_level)
-
     data = await state.get_data()
     country_ = data.get("country")
     rate_ = data.get("rate")
-    lang = data.get("lang", "uz")
-    if lang == "english":
+
+    user_id = callback.from_user.id
+    cached_data = user_cache.get(user_id, {})
+    print(cached_data, 423)
+    lang = cached_data.get("lang", None)
+    print(lang, 425)
+    # lang = data.get("lang", None)
+    if lang == "english" or lang == 'en':
         lang = "en"
 
     await callback.answer()  # ✅ Loading tugmasini yopish
@@ -433,12 +453,12 @@ async def degree_handler(callback: types.CallbackQuery, state: FSMContext):
         "korea": "18.04.2025,20:00"
     }
     # ✅ Userga habar yuborish
-    if lang == "en":
+    if lang == "en" or lang == "english":
         message_text = (
             "✅ Thank you! You’ve *successfully* registered.\n"
             "📌 We’ll keep you updated with important notifications."
         )
-    else:
+    if lang == "uzbek" or lang == "uz":
         message_text = (
             "✅ Rahmat! Siz *muvaffaqiyatli* ro'yhatdan o'tdingiz.\n"
             "📌 Biz sizga muhim eslatmalarni hali yuborib turamiz."
@@ -501,6 +521,7 @@ async def degree_handler(callback: types.CallbackQuery, state: FSMContext):
 
     print(user_data)
     save_user_to_webinar(user_data)
+    await state.update_data(lang=lang)
     await state.finish()
 
 
