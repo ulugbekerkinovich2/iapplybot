@@ -147,9 +147,9 @@ async def send_welcome(message: types.Message, state: FSMContext):
 
     if is_subscribed:
         text = (
-            "Assalomu Alaykum! iApply botiga xush kelibsiz 👋🏻\nDavom etish uchun tilni tanlang ⤵️"
+            "Assalomu Alaykum! iApply.org botiga xush kelibsiz 👋🏻\nDavom etish uchun tilni tanlang ⤵️"
             if lang == "uz" or lang == "uzbek" else
-            "Hello! Welcome to the iApply bot 👋🏻\nPlease select a language to continue ⤵️"
+            "Hello! Welcome to the iApply.org bot 👋🏻\nPlease select a language to continue ⤵️"
         )
 
         await message.answer(
