@@ -705,7 +705,7 @@ async def handler_help(callback: types.CallbackQuery, state: FSMContext):
     lang_ = data.get('lang', None)
     print(lang_, 591)
     await state.update_data(lang=lang_)
-    caption = "."
+    caption = "Iltimos tilni tanlang\nPlease Select language"
     if lang_ in ('english','en'):
         caption = (
             "What kind of application do you have?"
