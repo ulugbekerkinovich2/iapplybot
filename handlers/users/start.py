@@ -954,7 +954,7 @@ from pathlib import Path
 EXCEL_FILE = Path("data/webinar_export.xlsx")
 from data.config import ADMINS  # 🛡 O‘zingizning admin ID larni shu yerga yozing
 
-@dp.message_handler(commands=["excel"])
+@dp.message_handler(commands=["excel"], state="*")
 async def handle_export_command(message: types.Message):
     print(message.from_user.id, ADMINS)
 
