@@ -773,7 +773,7 @@ async def fetch_help(callback: types.CallbackQuery, state: FSMContext):
     lang = user_data.get("lang", None)  # default lang
 
     print(lang, 644)
-    msg = "."
+    msg = "Iltimos tilni tanlang\nPlease select language"
     if lang in ("uzbek", "uz"):
         msg = "To‘liq ism familiyangizni kiriting:"
     if lang in ("english", "en"):
