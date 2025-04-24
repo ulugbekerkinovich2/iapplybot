@@ -706,6 +706,9 @@ async def handler_help(callback: types.CallbackQuery, state: FSMContext):
     print(lang_, 591)
     await state.update_data(lang=lang_)
     caption = "Iltimos tilni tanlang\nPlease Select language"
+    if lang_ not in ('uzbek', 'uz', 'english', 'en'):
+        await callback.message.answer(caption, reply_markup=get_language_keyboard())
+        return
     if lang_ in ('english','en'):
         caption = (
             "What kind of application do you have?"
@@ -776,11 +779,17 @@ async def fetch_help(callback: types.CallbackQuery, state: FSMContext):
     msg = "Iltimos tilni tanlang\nPlease select language"
     if lang in ("uzbek", "uz"):
         msg = "To‘liq ism familiyangizni kiriting:"
+
     if lang in ("english", "en"):
         msg = "Please enter your full name:"
 
-    await callback.message.answer(msg)
-    await HelpForm.fullname.set()
+    if lang not in ("uzbek", "uz", "english", "en"):
+        msg = "Iltimos tilni tanlang\nPlease select language"
+        await callback.message.answer(msg, reply_markup=get_language_keyboard())
+
+    if lang in ("uzbek", "uz", "english", "en"):
+        await callback.message.answer(msg)
+        await HelpForm.fullname.set()
 
 
 
